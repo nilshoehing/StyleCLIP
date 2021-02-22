@@ -60,8 +60,9 @@ def main(args):
         c_loss = clip_loss(img_gen, text_inputs)
 
         if args.mode == "edit":
-            l2_loss = ((latent_code_init - latent) ** 2).sum()
-            loss = c_loss + args.l2_lambda * l2_loss
+            #l2_loss = ((latent_code_init - latent) ** 2).sum()
+            #loss = c_loss + args.l2_lambda * l2_loss
+            loss = c_loss + args.blur_factor * args.blur_score(img_gen)
         else:
             loss = c_loss
 
